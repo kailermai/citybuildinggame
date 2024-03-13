@@ -38,6 +38,15 @@ public class BuildingPlacement : MonoBehaviour
                 bulldozeIndicator.transform.position = curIndicatorPos;
             }
         }
+
+        if (Input.GetMouseButtonDown(0) && currentlyPlacing)
+        {
+            PlaceBuilding();
+        }
+        else if (Input.GetMouseButtonDown(0) && currentlyBulldozering)
+        {
+            Bulldoze();
+        }
     }
 
     public void BeginNewBuildingPlacement(BuildingPreset preset)
@@ -47,6 +56,7 @@ public class BuildingPlacement : MonoBehaviour
         currentlyPlacing = true;
         curBuildingPreset = preset;
         placementIndicator.SetActive(true);
+        placementIndicator.transform.position = new Vector3(0, -99, 0);
     }
 
     void CancelBuildingPlacement()
@@ -59,5 +69,25 @@ public class BuildingPlacement : MonoBehaviour
     {
         currentlyBulldozering = !currentlyBulldozering;
         bulldozeIndicator.SetActive(currentlyBulldozering);
+        bulldozeIndicator.transform.position = new Vector3(0, -99, 0);
+    }
+
+    void PlaceBuilding()
+    {
+        GameObject buildingObj = Instantiate(curBuildingPreset.prefab, curIndicatorPos, Quaternion.identity);
+        // tell city script
+        City.instance.OnPlaceBuilding(buildingObj.GetComponent<Building>());
+
+        CancelBuildingPlacement();
+    }
+
+    void Bulldoze()
+    {
+        Building buildingToDestroy = City.instance.buildings.Find(x => x.transform.position == curIndicatorPos);
+
+        if (buildingToDestroy != null)
+        {
+            City.instance.OnRemoveBuilding(buildingToDestroy);
+        }
     }
 }

@@ -455,6 +455,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a54e2fe86fa54deca4a03be79abad05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 300
+  day: 1
+  curPopulation: 0
+  curJobs: 0
+  curFood: 0
+  maxPopulation: 0
+  maxJobs: 0
+  incomePerJob: 10
+  statsText: {fileID: 407498354}
+  buildings: []
 --- !u!4 &284314010
 Transform:
   m_ObjectHideFlags: 0
@@ -2410,7 +2420,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 120, y: -30}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1999857316
 MonoBehaviour:
@@ -2495,7 +2505,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 60.330627, y: -14.965729, z: 59.862885, w: -14.965725}
+  m_margin: {x: -0.085632324, y: -0.074394226, z: 0.72302246, w: -0.074394226}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

@@ -19,17 +19,22 @@ public class Selector : MonoBehaviour
         cam = Camera.main;
     }
 
+    // returns the tile that the mouse is hovering over
     public Vector3 GetCurTilePosition()
     {
+        //return if we are hovering over UI
         if (EventSystem.current.IsPointerOverGameObject())
         {
             return new Vector3(0, -99, 0);
         }
 
+        // create the plane, ray and out distance
         Plane plane = new Plane(Vector3.up, Vector3.zero);
         Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         float rayOut = 0.0f;
 
+
+        // shoot the ray at the plane
         if (plane.Raycast(ray, out rayOut))
         {
             Vector3 newPos = ray.GetPoint(rayOut) - new Vector3(0.5f, 0.0f, 0.5f);
